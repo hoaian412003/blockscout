@@ -6325,16 +6325,10 @@ defmodule Explorer.Chain do
     )
   end
 
-  defp page_polygon_supernet_deposits(query, %PagingOptions{key: nil}), do: query
+  defp page_polygon_supernet_deposits_or_withdrawals(query, %PagingOptions{key: nil}), do: query
 
-  defp page_polygon_supernet_deposits(query, %PagingOptions{key: {msg_id}}) do
-    from(de in query, where: de.msg_id < ^msg_id)
-  end
-
-  defp page_polygon_supernet_withdrawals(query, %PagingOptions{key: nil}), do: query
-
-  defp page_polygon_supernet_withdrawals(query, %PagingOptions{key: {msg_id}}) do
-    from(w in query, where: w.msg_id < ^msg_id)
+  defp page_polygon_supernet_deposits_or_withdrawals(query, %PagingOptions{key: {msg_id}}) do
+    from(item in query, where: item.msg_id < ^msg_id)
   end
 
   def polygon_supernet_deposits(options \\ []) do
@@ -6358,7 +6352,7 @@ defmodule Explorer.Chain do
       )
 
     base_query
-    |> page_polygon_supernet_deposits(paging_options)
+    |> page_polygon_supernet_deposits_or_withdrawals(paging_options)
     |> limit(^paging_options.page_size)
     |> select_repo(options).all()
   end
@@ -6398,7 +6392,7 @@ defmodule Explorer.Chain do
       )
 
     base_query
-    |> page_polygon_supernet_withdrawals(paging_options)
+    |> page_polygon_supernet_deposits_or_withdrawals(paging_options)
     |> limit(^paging_options.page_size)
     |> select_repo(options).all()
   end
