@@ -37,6 +37,7 @@ defmodule Indexer.Block.Fetcher do
     Addresses,
     AddressTokenBalances,
     MintTransfers,
+    TokenInstances,
     TokenTransfers,
     TransactionActions
   }
@@ -174,6 +175,7 @@ defmodule Indexer.Block.Fetcher do
          address_token_balances = AddressTokenBalances.params_set(%{token_transfers_params: token_transfers}),
          transaction_actions =
            Enum.map(transaction_actions, fn action -> Map.put(action, :data, Map.delete(action.data, :block_number)) end),
+         token_instances = TokenInstances.params_set(%{token_transfers_params: token_transfers}),
          {:ok, inserted} <-
            __MODULE__.import(
              state,
@@ -192,7 +194,8 @@ defmodule Indexer.Block.Fetcher do
                token_transfers: %{params: token_transfers},
                tokens: %{on_conflict: :nothing, params: tokens},
                transactions: %{params: transactions_with_receipts},
-               withdrawals: %{params: withdrawals_params}
+               withdrawals: %{params: withdrawals_params},
+               token_instances: %{params: token_instances}
              }
            ),
          {:tx_actions, {:ok, inserted_tx_actions}} <-
