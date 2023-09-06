@@ -6331,6 +6331,7 @@ defmodule Explorer.Chain do
     from(item in query, where: item.msg_id < ^msg_id)
   end
 
+  @spec polygon_supernet_deposits(list()) :: list()
   def polygon_supernet_deposits(options \\ []) do
     paging_options = Keyword.get(options, :paging_options, @default_paging_options)
 
@@ -6357,6 +6358,7 @@ defmodule Explorer.Chain do
     |> select_repo(options).all()
   end
 
+  @spec polygon_supernet_deposits_count(list()) :: term() | nil
   def polygon_supernet_deposits_count(options \\ []) do
     query =
       from(
@@ -6368,6 +6370,7 @@ defmodule Explorer.Chain do
     select_repo(options).aggregate(query, :count, timeout: :infinity)
   end
 
+  @spec polygon_supernet_withdrawals(list()) :: list()
   def polygon_supernet_withdrawals(options \\ []) do
     paging_options = Keyword.get(options, :paging_options, @default_paging_options)
 
@@ -6397,6 +6400,7 @@ defmodule Explorer.Chain do
     |> select_repo(options).all()
   end
 
+  @spec polygon_supernet_withdrawals_count(list()) :: term() | nil
   def polygon_supernet_withdrawals_count(options \\ []) do
     query =
       from(
@@ -6407,6 +6411,7 @@ defmodule Explorer.Chain do
     select_repo(options).aggregate(query, :count, timeout: :infinity)
   end
 
+  @spec polygon_supernet_deposit_by_transaction_hash(Hash.t()) :: Ecto.Schema.t() | term() | nil
   def polygon_supernet_deposit_by_transaction_hash(hash) do
     query =
       from(
@@ -6426,6 +6431,7 @@ defmodule Explorer.Chain do
     Repo.replica().one(query)
   end
 
+  @spec polygon_supernet_withdrawal_by_transaction_hash(Hash.t()) :: Ecto.Schema.t() | term() | nil
   def polygon_supernet_withdrawal_by_transaction_hash(hash) do
     query =
       from(
