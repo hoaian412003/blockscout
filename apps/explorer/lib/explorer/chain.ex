@@ -56,10 +56,6 @@ defmodule Explorer.Chain do
     InternalTransaction,
     Log,
     PendingBlockOperation,
-    PolygonSupernetDeposit,
-    PolygonSupernetDepositExecute,
-    PolygonSupernetWithdrawal,
-    PolygonSupernetWithdrawalExit,
     Search,
     SmartContract,
     SmartContractAdditionalSource,
@@ -91,6 +87,8 @@ defmodule Explorer.Chain do
   alias Explorer.Chain.Fetcher.{CheckBytecodeMatchingOnDemand, LookUpSmartContractSourcesOnDemand}
   alias Explorer.Chain.Import.Runner
   alias Explorer.Chain.InternalTransaction.{CallType, Type}
+  alias Explorer.Chain.PolygonSupernet.{Deposit, DepositExecute, WithdrawalExit}
+  alias Explorer.Chain.PolygonSupernet.Withdrawal, as: PolygonSupernetWithdrawal
 
   alias Explorer.Market.MarketHistoryCache
   alias Explorer.{PagingOptions, Repo}
@@ -6337,8 +6335,8 @@ defmodule Explorer.Chain do
 
     base_query =
       from(
-        de in PolygonSupernetDepositExecute,
-        inner_join: d in PolygonSupernetDeposit,
+        de in DepositExecute,
+        inner_join: d in Deposit,
         on: d.msg_id == de.msg_id and not is_nil(d.l1_timestamp),
         select: %{
           msg_id: de.msg_id,
@@ -6362,8 +6360,8 @@ defmodule Explorer.Chain do
   def polygon_supernet_deposits_count(options \\ []) do
     query =
       from(
-        de in PolygonSupernetDepositExecute,
-        inner_join: d in PolygonSupernetDeposit,
+        de in DepositExecute,
+        inner_join: d in Deposit,
         on: d.msg_id == de.msg_id and not is_nil(d.l1_timestamp)
       )
 
@@ -6377,7 +6375,7 @@ defmodule Explorer.Chain do
     base_query =
       from(
         w in PolygonSupernetWithdrawal,
-        left_join: we in PolygonSupernetWithdrawalExit,
+        left_join: we in WithdrawalExit,
         on: we.msg_id == w.msg_id,
         left_join: b in Block,
         on: b.number == w.l2_block_number and b.consensus == true,
@@ -6415,8 +6413,8 @@ defmodule Explorer.Chain do
   def polygon_supernet_deposit_by_transaction_hash(hash) do
     query =
       from(
-        de in PolygonSupernetDepositExecute,
-        inner_join: d in PolygonSupernetDeposit,
+        de in DepositExecute,
+        inner_join: d in Deposit,
         on: d.msg_id == de.msg_id and not is_nil(d.from),
         select: %{
           msg_id: de.msg_id,
@@ -6436,7 +6434,7 @@ defmodule Explorer.Chain do
     query =
       from(
         w in PolygonSupernetWithdrawal,
-        left_join: we in PolygonSupernetWithdrawalExit,
+        left_join: we in WithdrawalExit,
         on: we.msg_id == w.msg_id,
         select: %{
           msg_id: w.msg_id,
