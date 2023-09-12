@@ -11,11 +11,13 @@
 - [#8210](https://github.com/blockscout/blockscout/pull/8210) - Drop address foreign keys
 - [#8292](https://github.com/blockscout/blockscout/pull/8292) - Add ETHEREUM_JSONRPC_WAIT_PER_TIMEOUT env var
 - [#8269](https://github.com/blockscout/blockscout/pull/8269) - Don't push back to sequence on catchup exception
-- [#8362](https://github.com/blockscout/blockscout/pull/8362) - Drop current token balances tokens foreign key
+- [#8362](https://github.com/blockscout/blockscout/pull/8362), [#8398](https://github.com/blockscout/blockscout/pull/8398) - Drop token balances tokens foreign key
 
 ### Fixes
 
 - [#8364](https://github.com/blockscout/blockscout/pull/8364) - Fix API v2 for OP Withdrawals
+- [#8446](https://github.com/blockscout/blockscout/pull/8446) - Fix market cap calculation in case of CMC
+- [#8431](https://github.com/blockscout/blockscout/pull/8431) - Fix contracts' output decoding
 - [#8354](https://github.com/blockscout/blockscout/pull/8354) - Hotfix for proper addresses' tokens displaying
 - [#8350](https://github.com/blockscout/blockscout/pull/8350) - Add Base Mainnet support for tx actions
 - [#8282](https://github.com/blockscout/blockscout/pull/8282) - NFT fetcher improvements
@@ -27,6 +29,7 @@
 
 ### Chore
 
+- [#8442](https://github.com/blockscout/blockscout/pull/8442) - Unify burn address definition
 - [#8321](https://github.com/blockscout/blockscout/pull/8321) - Add curl into resulting Docker image
 - [#8319](https://github.com/blockscout/blockscout/pull/8319) - Add MIX_ENV: 'prod' to docker-compose
 - [#8281](https://github.com/blockscout/blockscout/pull/8281) - Planned removal of duplicate API endpoints: for CSV export and GraphQL
