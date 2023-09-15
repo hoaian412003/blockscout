@@ -110,7 +110,7 @@ defmodule Explorer.Account.Notifier.Summary do
         %Chain.TokenTransfer{} = transfer
       ) do
     case transfer.token.type do
-      "ERC-20" ->
+      "PRC-20" ->
         %Summary{
           transaction_hash: transaction.hash,
           method: method(transfer),
@@ -124,7 +124,7 @@ defmodule Explorer.Account.Notifier.Summary do
           type: transfer.token.type
         }
 
-      "ERC-721" ->
+      "PRC-721" ->
         %Summary{
           amount: 0,
           transaction_hash: transaction.hash,
@@ -138,7 +138,7 @@ defmodule Explorer.Account.Notifier.Summary do
           type: transfer.token.type
         }
 
-      "ERC-1155" ->
+      "PRC-1155" ->
         %Summary{
           amount: 0,
           transaction_hash: transaction.hash,

@@ -142,12 +142,12 @@ defmodule Explorer.Account.Notifier.Notify do
     case {type, direction} do
       {"COIN", :incoming} -> address.watch_coin_input
       {"COIN", :outgoing} -> address.watch_coin_output
-      {"ERC-20", :incoming} -> address.watch_erc_20_input
-      {"ERC-20", :outgoing} -> address.watch_erc_20_output
-      {"ERC-721", :incoming} -> address.watch_erc_721_input
-      {"ERC-721", :outgoing} -> address.watch_erc_721_output
-      {"ERC-1155", :incoming} -> address.watch_erc_1155_input
-      {"ERC-1155", :outgoing} -> address.watch_erc_1155_output
+      {"PRC-20", :incoming} -> address.watch_erc_20_input
+      {"PRC-20", :outgoing} -> address.watch_erc_20_output
+      {"PRC-721", :incoming} -> address.watch_erc_721_input
+      {"PRC-721", :outgoing} -> address.watch_erc_721_output
+      {"PRC-1155", :incoming} -> address.watch_erc_1155_input
+      {"PRC-1155", :outgoing} -> address.watch_erc_1155_output
     end
   end
 

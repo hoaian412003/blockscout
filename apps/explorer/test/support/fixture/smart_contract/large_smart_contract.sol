@@ -729,7 +729,7 @@ interface IERC721 {
 
 
 /**
- * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
+ * @title PRC-721 Non-Fungible Token Standard, optional enumeration extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
  */
 interface IERC721Enumerable {
@@ -740,7 +740,7 @@ interface IERC721Enumerable {
 
 
 /**
- * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
+ * @title PRC-721 Non-Fungible Token Standard, optional metadata extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
  */
 interface IERC721Metadata {
@@ -1332,7 +1332,7 @@ contract ERC721 is ERC165, IERC721 {
 
 
 /**
- * @title ERC-721 Non-Fungible Token with optional enumeration extension logic
+ * @title PRC-721 Non-Fungible Token with optional enumeration extension logic
  * @dev See https://eips.ethereum.org/EIPS/eip-721
  */
 contract ERC721Enumerable is ERC165, ERC721, IERC721Enumerable {

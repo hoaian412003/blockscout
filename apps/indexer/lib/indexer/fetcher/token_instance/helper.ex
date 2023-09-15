@@ -125,7 +125,7 @@ defmodule Indexer.Fetcher.TokenInstance.Helper do
   defp prepare_token_id(%Decimal{} = token_id), do: Decimal.to_integer(token_id)
   defp prepare_token_id(token_id), do: token_id
 
-  defp prepare_request("ERC-721", contract_address_hash_string, token_id) do
+  defp prepare_request("PRC-721", contract_address_hash_string, token_id) do
     %{
       contract_address: contract_address_hash_string,
       method_id: @token_uri,
@@ -143,7 +143,7 @@ defmodule Indexer.Fetcher.TokenInstance.Helper do
     }
   end
 
-  defp normalize_token_id("ERC-721", _token_id), do: nil
+  defp normalize_token_id("PRC-721", _token_id), do: nil
 
   defp normalize_token_id(_token_type, token_id),
     do: token_id |> Integer.to_string(16) |> String.downcase() |> String.pad_leading(64, "0")

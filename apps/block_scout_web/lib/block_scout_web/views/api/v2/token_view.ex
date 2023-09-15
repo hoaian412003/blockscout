@@ -65,7 +65,7 @@ defmodule BlockScoutWeb.API.V2.TokenView do
 
   def prepare_token_instance(instance, token) do
     is_unique =
-      not (token.type == "ERC-1155") or
+      not (token.type == "PRC-1155") or
         Chain.token_id_1155_is_unique?(token.contract_address_hash, instance.token_id, @api_true)
 
     %{

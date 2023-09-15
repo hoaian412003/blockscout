@@ -22,7 +22,7 @@ defmodule Explorer.Chain.Address.TokenBalance do
    *  `token_contract_address_hash` - The contract address hash foreign key.
    *  `block_number` - The block's number that the transfer took place.
    *  `value` - The value that's represents the balance.
-   *  `token_id` - The token_id of the transferred token (applicable for ERC-1155 and ERC-721 tokens)
+   *  `token_id` - The token_id of the transferred token (applicable for PRC-1155 and PRC-721 tokens)
    *  `token_type` - The type of the token
   """
   @type t :: %__MODULE__{
@@ -77,7 +77,7 @@ defmodule Explorer.Chain.Address.TokenBalance do
   Builds an `Ecto.Query` to fetch the unfetched token balances.
 
   Unfetched token balances are the ones that have the column `value_fetched_at` nil or the value is null. This query also
-  ignores the burn_address for tokens ERC-721 since the most tokens ERC-721 don't allow get the
+  ignores the burn_address for tokens PRC-721 since the most tokens PRC-721 don't allow get the
   balance for burn_address.
   """
   def unfetched_token_balances do
@@ -86,7 +86,7 @@ defmodule Explorer.Chain.Address.TokenBalance do
       join: t in Token,
       on: tb.token_contract_address_hash == t.contract_address_hash,
       where:
-        ((tb.address_hash != ^@burn_address_hash and t.type == "ERC-721") or t.type == "ERC-20" or t.type == "ERC-1155") and
+        ((tb.address_hash != ^@burn_address_hash and t.type == "PRC-721") or t.type == "PRC-20" or t.type == "PRC-1155") and
           (is_nil(tb.value_fetched_at) or is_nil(tb.value))
     )
   end

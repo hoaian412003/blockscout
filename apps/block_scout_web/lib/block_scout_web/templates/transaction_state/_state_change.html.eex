@@ -44,7 +44,7 @@
     <% end %>
   <% end %>
   <td class="stakes-td">
-    <%= if is_list(@coin_or_token_transfers) and coin_or_transfer.token.type == "ERC-721" do %>
+    <%= if is_list(@coin_or_token_transfers) and coin_or_transfer.token.type == "PRC-721" do %>
       <%= for {type, transfer} <- @coin_or_token_transfers do %>
         <%= case type do %>
           <% :from ->  %>

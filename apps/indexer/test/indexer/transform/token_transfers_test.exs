@@ -80,15 +80,15 @@ defmodule Indexer.Transform.TokenTransfersTest do
         tokens: [
           %{
             contract_address_hash: log_3.address_hash,
-            type: "ERC-721"
+            type: "PRC-721"
           },
           %{
             contract_address_hash: log_1.address_hash,
-            type: "ERC-20"
+            type: "PRC-20"
           },
           %{
             contract_address_hash: weth_withdrawal_log.address_hash,
-            type: "ERC-20"
+            type: "PRC-20"
           }
         ],
         token_transfers: [
@@ -100,7 +100,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
             token_contract_address_hash: log_3.address_hash,
             token_ids: [183],
             transaction_hash: log_3.transaction_hash,
-            token_type: "ERC-721",
+            token_type: "PRC-721",
             block_hash: log_3.block_hash
           },
           %{
@@ -112,7 +112,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
             to_address_hash: truncated_hash(log_1.third_topic),
             token_contract_address_hash: log_1.address_hash,
             transaction_hash: log_1.transaction_hash,
-            token_type: "ERC-20",
+            token_type: "PRC-20",
             block_hash: log_1.block_hash
           },
           %{
@@ -124,7 +124,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
             to_address_hash: "0x0000000000000000000000000000000000000000",
             token_contract_address_hash: weth_withdrawal_log.address_hash,
             token_ids: nil,
-            token_type: "ERC-20",
+            token_type: "PRC-20",
             transaction_hash: weth_withdrawal_log.transaction_hash
           },
           %{
@@ -136,7 +136,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
             to_address_hash: truncated_hash(weth_deposit_log.second_topic),
             token_contract_address_hash: weth_deposit_log.address_hash,
             token_ids: nil,
-            token_type: "ERC-20",
+            token_type: "PRC-20",
             transaction_hash: weth_deposit_log.transaction_hash
           }
         ]
@@ -145,7 +145,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
       assert TokenTransfers.parse(logs) == expected
     end
 
-    test "parses ERC-721 transfer with addresses in data field" do
+    test "parses PRC-721 transfer with addresses in data field" do
       log = %{
         address_hash: "0x58Ab73CB79c8275628E0213742a85B163fE0A9Fb",
         block_number: 8_683_457,
@@ -165,7 +165,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
         tokens: [
           %{
             contract_address_hash: "0x58Ab73CB79c8275628E0213742a85B163fE0A9Fb",
-            type: "ERC-721"
+            type: "PRC-721"
           }
         ],
         token_transfers: [
@@ -178,7 +178,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
             token_contract_address_hash: log.address_hash,
             token_ids: [14_939],
             transaction_hash: log.transaction_hash,
-            token_type: "ERC-721"
+            token_type: "PRC-721"
           }
         ]
       }
@@ -215,14 +215,14 @@ defmodule Indexer.Transform.TokenTransfersTest do
                    token_ids: [
                      7_237_005_577_332_282_011_952_059_972_634_123_378_909_214_838_582_411_639_295_170_840_059_424_276_480
                    ],
-                   token_type: "ERC-1155",
+                   token_type: "PRC-1155",
                    transaction_hash: "0x6d2dd62c178e55a13b65601f227c4ffdd8aa4e3bcb1f24731363b4f7619e92c8"
                  }
                ],
                tokens: [
                  %{
                    contract_address_hash: "0x58Ab73CB79c8275628E0213742a85B163fE0A9Fb",
-                   type: "ERC-1155"
+                   type: "PRC-1155"
                  }
                ]
              }
@@ -254,12 +254,12 @@ defmodule Indexer.Transform.TokenTransfersTest do
                    to_address_hash: "0x6c943470780461b00783ad530a53913bd2c104d3",
                    token_contract_address_hash: "0x58Ab73CB79c8275628E0213742a85B163fE0A9Fb",
                    token_ids: [680_564_733_841_876_926_926_749_214_863_536_422_912],
-                   token_type: "ERC-1155",
+                   token_type: "PRC-1155",
                    transaction_hash: "0x6d2dd62c178e55a13b65601f227c4ffdd8aa4e3bcb1f24731363b4f7619e92c8",
                    amounts: [5000]
                  }
                ],
-               tokens: [%{contract_address_hash: "0x58Ab73CB79c8275628E0213742a85B163fE0A9Fb", type: "ERC-1155"}]
+               tokens: [%{contract_address_hash: "0x58Ab73CB79c8275628E0213742a85B163fE0A9Fb", type: "PRC-1155"}]
              }
     end
 
@@ -283,7 +283,7 @@ defmodule Indexer.Transform.TokenTransfersTest do
     end
 
     test "token type from database is preferred if the incoming one is different" do
-      %{contract_address_hash: hash} = insert(:token, type: "ERC-1155")
+      %{contract_address_hash: hash} = insert(:token, type: "PRC-1155")
 
       contract_address_hash = to_string(hash)
 
@@ -302,8 +302,8 @@ defmodule Indexer.Transform.TokenTransfersTest do
       }
 
       assert %{
-               token_transfers: [%{token_contract_address_hash: ^contract_address_hash, token_type: "ERC-1155"}],
-               tokens: [%{contract_address_hash: ^contract_address_hash, type: "ERC-1155"}]
+               token_transfers: [%{token_contract_address_hash: ^contract_address_hash, token_type: "PRC-1155"}],
+               tokens: [%{contract_address_hash: ^contract_address_hash, type: "PRC-1155"}]
              } = TokenTransfers.parse([log])
     end
 
@@ -342,10 +342,10 @@ defmodule Indexer.Transform.TokenTransfersTest do
 
       assert %{
                token_transfers: [
-                 %{token_contract_address_hash: ^contract_address_hash, token_type: "ERC-1155"},
-                 %{token_contract_address_hash: ^contract_address_hash, token_type: "ERC-1155"}
+                 %{token_contract_address_hash: ^contract_address_hash, token_type: "PRC-1155"},
+                 %{token_contract_address_hash: ^contract_address_hash, token_type: "PRC-1155"}
                ],
-               tokens: [%{contract_address_hash: ^contract_address_hash, type: "ERC-1155"}]
+               tokens: [%{contract_address_hash: ^contract_address_hash, type: "PRC-1155"}]
              } = TokenTransfers.parse(logs)
     end
   end

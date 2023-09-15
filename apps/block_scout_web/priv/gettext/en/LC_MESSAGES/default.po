@@ -1188,27 +1188,27 @@ msgstr ""
 
 #: lib/block_scout_web/views/transaction_view.ex:220
 #, elixir-autogen, elixir-format
-msgid "ERC-1155 "
+msgid "PRC-1155 "
 msgstr ""
 
 #: lib/block_scout_web/views/transaction_view.ex:218
 #, elixir-autogen, elixir-format
-msgid "ERC-20 "
+msgid "PRC-20 "
 msgstr ""
 
 #: lib/block_scout_web/templates/account/watchlist_address/form.html.eex:40
 #, elixir-autogen, elixir-format
-msgid "ERC-20 tokens (beta)"
+msgid "PRC-20 tokens (beta)"
 msgstr ""
 
 #: lib/block_scout_web/views/transaction_view.ex:219
 #, elixir-autogen, elixir-format
-msgid "ERC-721 "
+msgid "PRC-721 "
 msgstr ""
 
 #: lib/block_scout_web/templates/account/watchlist_address/form.html.eex:53
 #, elixir-autogen, elixir-format
-msgid "ERC-721, ERC-1155 tokens (NFT) (beta)"
+msgid "PRC-721, PRC-1155 tokens (NFT) (beta)"
 msgstr ""
 
 #: lib/block_scout_web/templates/api_docs/eth_rpc.html.eex:4
@@ -1664,7 +1664,7 @@ msgstr ""
 
 #: lib/block_scout_web/templates/transaction/overview.html.eex:331
 #, elixir-autogen, elixir-format
-msgid "List of ERC-1155 tokens created in the transaction."
+msgid "List of PRC-1155 tokens created in the transaction."
 msgstr ""
 
 #: lib/block_scout_web/templates/transaction/overview.html.eex:315
@@ -2388,7 +2388,7 @@ msgstr ""
 
 #: lib/block_scout_web/templates/address_token/overview.html.eex:59
 #, elixir-autogen, elixir-format
-msgid "Shows the tokens held in the address (includes ERC-20, ERC-721 and ERC-1155)."
+msgid "Shows the tokens held in the address (includes PRC-20, PRC-721 and PRC-1155)."
 msgstr ""
 
 #: lib/block_scout_web/templates/address_token/overview.html.eex:66

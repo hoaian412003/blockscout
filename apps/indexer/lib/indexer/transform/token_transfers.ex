@@ -1,6 +1,6 @@
 defmodule Indexer.Transform.TokenTransfers do
   @moduledoc """
-  Helper functions for transforming data for ERC-20 and ERC-721 token transfers.
+  Helper functions for transforming data for PRC-20 and PRC-721 token transfers.
   """
 
   require Logger
@@ -119,7 +119,7 @@ defmodule Indexer.Transform.TokenTransfers do
 
   defp token_type_priority(nil), do: -1
 
-  @token_types_priority_order ["ERC-20", "ERC-721", "ERC-1155"]
+  @token_types_priority_order ["PRC-20", "PRC-721", "PRC-1155"]
   defp token_type_priority(token_type) do
     Enum.find_index(@token_types_priority_order, &(&1 == token_type))
   end
@@ -145,7 +145,7 @@ defmodule Indexer.Transform.TokenTransfers do
       acc
   end
 
-  # ERC-20 token transfer
+  # PRC-20 token transfer
   defp parse_params(%{second_topic: second_topic, third_topic: third_topic, fourth_topic: nil} = log)
        when not is_nil(second_topic) and not is_nil(third_topic) do
     [amount] = decode_data(log.data, [{:uint, 256}])
@@ -160,18 +160,18 @@ defmodule Indexer.Transform.TokenTransfers do
       token_contract_address_hash: log.address_hash,
       transaction_hash: log.transaction_hash,
       token_ids: nil,
-      token_type: "ERC-20"
+      token_type: "PRC-20"
     }
 
     token = %{
       contract_address_hash: log.address_hash,
-      type: "ERC-20"
+      type: "PRC-20"
     }
 
     {token, token_transfer}
   end
 
-  # ERC-20 token transfer for WETH
+  # PRC-20 token transfer for WETH
   defp parse_params(%{second_topic: second_topic, third_topic: nil, fourth_topic: nil} = log)
        when not is_nil(second_topic) do
     [amount] = decode_data(log.data, [{:uint, 256}])
@@ -193,18 +193,18 @@ defmodule Indexer.Transform.TokenTransfers do
       token_contract_address_hash: log.address_hash,
       transaction_hash: log.transaction_hash,
       token_ids: nil,
-      token_type: "ERC-20"
+      token_type: "PRC-20"
     }
 
     token = %{
       contract_address_hash: log.address_hash,
-      type: "ERC-20"
+      type: "PRC-20"
     }
 
     {token, token_transfer}
   end
 
-  # ERC-721 token transfer with topics as addresses
+  # PRC-721 token transfer with topics as addresses
   defp parse_params(%{second_topic: second_topic, third_topic: third_topic, fourth_topic: fourth_topic} = log)
        when not is_nil(second_topic) and not is_nil(third_topic) and not is_nil(fourth_topic) do
     [token_id] = decode_data(fourth_topic, [{:uint, 256}])
@@ -218,18 +218,18 @@ defmodule Indexer.Transform.TokenTransfers do
       token_contract_address_hash: log.address_hash,
       token_ids: [token_id || 0],
       transaction_hash: log.transaction_hash,
-      token_type: "ERC-721"
+      token_type: "PRC-721"
     }
 
     token = %{
       contract_address_hash: log.address_hash,
-      type: "ERC-721"
+      type: "PRC-721"
     }
 
     {token, token_transfer}
   end
 
-  # ERC-721 token transfer with info in data field instead of in log topics
+  # PRC-721 token transfer with info in data field instead of in log topics
   defp parse_params(
          %{
            second_topic: nil,
@@ -250,12 +250,12 @@ defmodule Indexer.Transform.TokenTransfers do
       token_contract_address_hash: log.address_hash,
       token_ids: [token_id],
       transaction_hash: log.transaction_hash,
-      token_type: "ERC-721"
+      token_type: "PRC-721"
     }
 
     token = %{
       contract_address_hash: log.address_hash,
-      type: "ERC-721"
+      type: "PRC-721"
     }
 
     {token, token_transfer}
@@ -279,14 +279,14 @@ defmodule Indexer.Transform.TokenTransfers do
       to_address_hash: truncate_address_hash(fourth_topic),
       token_contract_address_hash: log.address_hash,
       transaction_hash: log.transaction_hash,
-      token_type: "ERC-1155",
+      token_type: "PRC-1155",
       token_ids: token_ids,
       amounts: values
     }
 
     token = %{
       contract_address_hash: log.address_hash,
-      type: "ERC-1155"
+      type: "PRC-1155"
     }
 
     {token, token_transfer}
@@ -304,13 +304,13 @@ defmodule Indexer.Transform.TokenTransfers do
       to_address_hash: truncate_address_hash(fourth_topic),
       token_contract_address_hash: log.address_hash,
       transaction_hash: log.transaction_hash,
-      token_type: "ERC-1155",
+      token_type: "PRC-1155",
       token_ids: [token_id]
     }
 
     token = %{
       contract_address_hash: log.address_hash,
-      type: "ERC-1155"
+      type: "PRC-1155"
     }
 
     {token, token_transfer}

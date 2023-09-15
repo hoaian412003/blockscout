@@ -263,7 +263,7 @@ interface IERC721 is IERC165 {
 // File: @openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol
 
 /**
- * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
+ * @title PRC-721 Non-Fungible Token Standard, optional enumeration extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
  */
 interface IERC721Enumerable is IERC721 {
@@ -918,7 +918,7 @@ abstract contract ERC165 is IERC165 {
 /**
  * @dev Implementation of the basic standard multi-token.
  * See https://eips.ethereum.org/EIPS/eip-1155
- * Originally based on code by Enjin: https://github.com/enjin/erc-1155
+ * Originally based on code by Enjin: https://github.com/enjin/PRC-1155
  *
  * _Available since v3.1._
  */
@@ -1415,7 +1415,7 @@ interface ShippingManagerI {
     event ShippingConfirmed(address indexed owner, address indexed tokenAddress, uint256 indexed tokenId);
 
     /**
-     * @dev True for ERC-721 tokens that are supported by this shipping manager, false otherwise.
+     * @dev True for PRC-721 tokens that are supported by this shipping manager, false otherwise.
      */
     function tokenSupported(address tokenAddress) external view returns(bool);
 

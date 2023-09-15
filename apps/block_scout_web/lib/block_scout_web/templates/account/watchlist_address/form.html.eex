@@ -37,7 +37,7 @@
                   </div>
                 </div>
                 <div class="col-sm">
-                  <h3><%= gettext "ERC-20 tokens (beta)" %></h3>
+                  <h3><%= gettext "PRC-20 tokens (beta)" %></h3>
                   <div class="form-input">
                     <%= checkbox f, :watch_erc_20_input, class: "form-checkbox" %>
                     <%= label f, :watch_erc_20_input, gettext("Incoming"), class: "label-checkbox" %>
@@ -50,7 +50,7 @@
                   </div>
                 </div>
                 <div class="col-md">
-                  <h3><%= gettext "ERC-721, ERC-1155 tokens (NFT) (beta)" %></h3>
+                  <h3><%= gettext "PRC-721, PRC-1155 tokens (NFT) (beta)" %></h3>
                   <div class="form-input">
                     <%= checkbox f, :watch_erc_721_input, class: "form-checkbox" %>
                     <%= label f, :watch_erc_721_input, gettext("Incoming"), class: "label-checkbox" %>

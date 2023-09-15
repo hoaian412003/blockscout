@@ -1,6 +1,6 @@
 defmodule Indexer.Fetcher.TokenInstance.MetadataRetriever do
   @moduledoc """
-  Fetches ERC-721 & ERC-1155 token instance metadata.
+  Fetches PRC-721 & PRC-1155 token instance metadata.
   """
 
   require Logger

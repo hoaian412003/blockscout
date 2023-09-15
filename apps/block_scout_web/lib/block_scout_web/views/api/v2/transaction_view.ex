@@ -671,7 +671,7 @@ defmodule BlockScoutWeb.API.V2.TransactionView do
 
   defp append_balance_change(map, state_change, coin_or_transfer) do
     change =
-      if is_list(state_change.coin_or_token_transfers) and coin_or_transfer.token.type == "ERC-721" do
+      if is_list(state_change.coin_or_token_transfers) and coin_or_transfer.token.type == "PRC-721" do
         for {direction, token_transfer} <- state_change.coin_or_token_transfers do
           %{"total" => prepare_token_transfer_total(token_transfer), "direction" => direction}
         end

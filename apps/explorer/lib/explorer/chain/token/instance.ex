@@ -1,6 +1,6 @@
 defmodule Explorer.Chain.Token.Instance do
   @moduledoc """
-  Represents an ERC-721/ERC-1155 token instance and stores metadata defined in https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md.
+  Represents an PRC-721/PRC-1155 token instance and stores metadata defined in https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md.
   """
 
   use Explorer.Schema
@@ -52,7 +52,7 @@ defmodule Explorer.Chain.Token.Instance do
 
   @doc """
   Inventory tab query.
-  A token ERC-721 is considered unique because it corresponds to the possession
+  A token PRC-721 is considered unique because it corresponds to the possession
   of a specific asset.
 
   To find out its current owner, it is necessary to look at the token last

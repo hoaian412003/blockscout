@@ -32,7 +32,7 @@ defmodule Indexer.Fetcher.TokenInstance.HelperTest do
 
       insert(:token,
         contract_address: build(:address, hash: "0x06012c8cf97bead5deae237070f9587f8e7a266d"),
-        type: "ERC-721"
+        type: "PRC-721"
       )
 
       [{:ok, %Instance{metadata: metadata}}] =
@@ -109,7 +109,7 @@ defmodule Indexer.Fetcher.TokenInstance.HelperTest do
 
       insert(:token,
         contract_address: build(:address, hash: "0x5caebd3b32e210e85ce3e9d51638b9c445481567"),
-        type: "ERC-1155"
+        type: "PRC-1155"
       )
 
       assert [
@@ -160,7 +160,7 @@ defmodule Indexer.Fetcher.TokenInstance.HelperTest do
 
       insert(:token,
         contract_address: build(:address, hash: "0x7e01CC81fCfdf6a71323900288A69e234C464f63"),
-        type: "ERC-721"
+        type: "PRC-721"
       )
 
       assert [

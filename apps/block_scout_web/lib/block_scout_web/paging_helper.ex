@@ -9,7 +9,7 @@ defmodule BlockScoutWeb.PagingHelper do
   @default_paging_options %PagingOptions{page_size: @page_size + 1}
   @allowed_filter_labels ["validated", "pending"]
   @allowed_type_labels ["coin_transfer", "contract_call", "contract_creation", "token_transfer", "token_creation"]
-  @allowed_token_transfer_type_labels ["ERC-20", "ERC-721", "ERC-1155"]
+  @allowed_token_transfer_type_labels ["PRC-20", "PRC-721", "PRC-1155"]
 
   def paging_options(%{"block_number" => block_number_string, "index" => index_string}, [:validated | _]) do
     with {block_number, ""} <- Integer.parse(block_number_string),
